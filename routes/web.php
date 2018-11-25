@@ -12,5 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login.index');
 });
+Route::get('/login', 'LoginController@index')->name('login.index');
+Route::get('/moderator', 'moderatorController@index')->name('moderator.index');
+
+
+
