@@ -7,7 +7,7 @@
         <title>Moderator  Dash Board</title>
 
     <body>
-    	<a href="{{route('moderator.reportedpost')}}">Reported Post</a>
+    	<a href="{{route('moderator.reported_post')}}">Reported Post</a>
     </body>
 
 </html>

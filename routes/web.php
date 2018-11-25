@@ -16,6 +16,6 @@ Route::get('/', function () {
 });
 Route::get('/login', 'LoginController@index')->name('login.index');
 Route::get('/moderator', 'moderatorController@index')->name('moderator.index');
-
-
+Route::get('/moderator/reportedpost', 'moderatorController@reported_post')->name('moderator.reported_post');
+Route::post('/moderator/reportedpost', 'moderatorController@status_update_reported_post');
 
