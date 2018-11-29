@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\post_reports;
+use App\Post_report;
 use Illuminate\Support\Facades\DB;
 
 
@@ -16,20 +16,39 @@ class moderatorController extends Controller
 
    public function reported_post(Request $request){
 
-   	$post_reports=DB::table('post_reports')
+   	$post_reports=DB::table('Post_reports')
    				->where('status','moderator')->get();
    	
    	return view('moderator.reported_post')-> with('post_reports',$post_reports);
    }
 
    public function status_update_reported_post(Request $request){
+   $statusadmin[]=$request['statusyes'];
+   $statuswrong[]=$request['statusno'];
 
- foreach ($request->post_reports as $post) {
- 		$post=post_reports::find($post_report->report_id);
-   		if(($request->statusad.'$post->report_id')==!null)
-   		{
-   			$post->status='admin';
-   		}
- }
+   foreach($statusadmin as $report_id){
+      //$post_report=Post_report::find($report_id);
+      //$post_report->status='admin';
+      //$post_report->save();
+      DB::table('post_reports')
+               ->where('report_id',$report_id)
+              ->update(['status' => 'admin']);
+         
    }
+
+   foreach($statuswrong as $report_id){
+      //$post_report=Post_report::find($report_id);
+      //$post_report->status='wrong';
+      //$post_report->save();   
+        DB::table('post_reports')
+              ->where('report_id',$report_id)
+              ->update(['status' => 'wrong']);
+                      
+   }
+
+   return view('moderator.index');
+
+}
+ 
+   
 }

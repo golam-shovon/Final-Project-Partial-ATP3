@@ -15,8 +15,7 @@
 				<td>{{$post_report->status}}</td>
 	<form method="post">
 		@csrf
-				<input type="hidden" name="accId" value="{{$post_report->report_id }}">
-				<td><input type="checkbox" name="statusad[].{{$post_report->report_id }}" value="yes">report to admin  <input type="checkbox" name="statuswr[].{{$post_report->report_id }}" value="no">wrong report </td>
+				<td><input type="checkbox" name="statusyes[]" value={{$post_report->report_id }} >report to admin  <input type="checkbox" name="statusno[]" value={{$post_report->report_id}} >wrong report </td>
 			</tr>
 		@endforeach
 		<td><input type="submit" name="submit" value="Submit" /></td>
