@@ -8,6 +8,8 @@
 
     <body>
     	<a href="{{route('moderator.reported_post')}}">Reported Post</a>
+    	<a href="{{route('moderator.unverified_post')}}">Unverfied Post</a>
+    	<a href="{{route('moderator.delete_post')}}">Delete Post</a>
     </body>
 
 </html>

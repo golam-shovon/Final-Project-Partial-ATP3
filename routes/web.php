@@ -18,4 +18,11 @@ Route::get('/login', 'LoginController@index')->name('login.index');
 Route::get('/moderator', 'moderatorController@index')->name('moderator.index');
 Route::get('/moderator/reportedpost', 'moderatorController@reported_post')->name('moderator.reported_post');
 Route::post('/moderator/reportedpost', 'moderatorController@status_update_reported_post');
+Route::get('/moderator/unverifiedpost', 'moderatorController@unverified_post')->name('moderator.unverified_post');
+Route::post('/moderator/unverifiedpost', 'moderatorController@verification_update_articles');
+Route::get('/moderator/delete_post', 'moderatorController@delete_post')->name('moderator.delete_post');
+Route::post('/moderator/delete_post', 'moderatorController@delete_articles');
+
+
+
 
