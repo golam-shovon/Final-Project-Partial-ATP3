@@ -22,6 +22,10 @@ Route::get('/moderator/unverifiedpost', 'moderatorController@unverified_post')->
 Route::post('/moderator/unverifiedpost', 'moderatorController@verification_update_articles');
 Route::get('/moderator/delete_post', 'moderatorController@delete_post')->name('moderator.delete_post');
 Route::post('/moderator/delete_post', 'moderatorController@delete_articles');
+Route::get('/moderator/notice', 'moderatorController@notice_index')->name('moderator.notice');
+Route::get('/moderator/notice/create', 'moderatorController@create_notice_render')->name('moderator.notice.create');
+Route::post('/moderator/notice/create', 'moderatorController@create_notice_store');
+
 
 
 

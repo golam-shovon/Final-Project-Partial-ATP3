@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post_report;
 use App\Article;
+use App\Notice;
 
 use Illuminate\Support\Facades\DB;
 
@@ -12,12 +13,12 @@ use Illuminate\Support\Facades\DB;
 class moderatorController extends Controller
 {
     public function index(Request $request){
-   	
+      session(['user_id' => 1]);   	
    	return view('moderator.index');
    }
 
    public function reported_post(Request $request){
-
+      session(['user_id' => 1]); 
    	$post_reports=DB::table('Post_reports')
    				->where('status','moderator')->get();
    	
@@ -25,6 +26,7 @@ class moderatorController extends Controller
    }
 
    public function status_update_reported_post(Request $request){
+      session(['user_id' => 1]); 
    $statusadmin[]=$request['statusyes'];
    $statuswrong[]=$request['statusno'];
 
@@ -52,6 +54,7 @@ class moderatorController extends Controller
 
 }
    public function unverified_post(Request $request){
+      session(['user_id' => 1]); 
 
       $articles=DB::table('Articles')
                ->where('verification','no')->get();
@@ -60,6 +63,7 @@ class moderatorController extends Controller
    }
 
    public function verification_update_articles(Request $request){
+      session(['user_id' => 1]); 
       $statusadmin[]=$request['statusyes'];
       $statuswrong[]=$request['statusno'];
 
@@ -74,6 +78,7 @@ class moderatorController extends Controller
    }
 
    foreach($statuswrong as $article_id){
+      session(['user_id' => 1]); 
       //$post_report=Post_report::find($report_id);
       //$post_report->status='wrong';
       //$post_report->save();   
@@ -88,6 +93,7 @@ class moderatorController extends Controller
 }
 
    public function delete_post(Request $request){
+      session(['user_id' => 1]); 
 
       $articles=DB::table('Articles')
                ->get();
@@ -96,6 +102,7 @@ class moderatorController extends Controller
    }
 
    public function delete_articles(Request $request){
+      session(['user_id' => 1]); 
       $statusadmin[]=$request['statusyes'];
 
       foreach($statusadmin as $article_id){
@@ -111,5 +118,34 @@ class moderatorController extends Controller
    return view('moderator.index');
 
  
+   }  
+
+   public function notice_index(Request $request){
+      session(['user_id' => 1]); 
+      
+      return view('moderator.notice_index');
+   }  
+
+   public function create_notice_render(Request $request){
+      session(['user_id' => 1]); 
+
+      return view('moderator.notice_create');      
+   }  
+
+   public function create_notice_store(Request $req){
+      session(['user_id' => 1]); 
+         $notice=new Notice();
+         date_default_timezone_set('Asia/Dhaka');
+            
+         // $article->article_id=0;
+         $notice->user_id=$req->session()->get('user_id');
+         $notice->notice_title= $req->input('notice_title');
+         $notice->notice= $req->input('notice');
+         // $article->created_at=date('Y-m-d h:m:s');
+         // $article->updated_at='0000-00-00 00:00:00';
+
+         $notice->save();
+         return redirect()->route('moderator.notice');
+
    }  
 }
