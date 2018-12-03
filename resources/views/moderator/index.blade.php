@@ -11,6 +11,8 @@
     	<a href="{{route('moderator.unverified_post')}}">Unverfied Post</a>
     	<a href="{{route('moderator.delete_post')}}">Delete Post</a>
     	<a href="{{route('moderator.notice')}}">Notice</a>
+        <a href="{{route('moderator.low_accuracy')}}">Low Acccuracy Posts</a>
+
     </body>
 
 </html>

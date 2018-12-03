@@ -25,6 +25,7 @@ Route::post('/moderator/delete_post', 'moderatorController@delete_articles');
 Route::get('/moderator/notice', 'moderatorController@notice_index')->name('moderator.notice');
 Route::get('/moderator/notice/create', 'moderatorController@create_notice_render')->name('moderator.notice.create');
 Route::post('/moderator/notice/create', 'moderatorController@create_notice_store');
+Route::get('/moderator/low_accuracy', 'moderatorController@low_acccuracy_post_render')->name('moderator.low_accuracy');
 
 
 

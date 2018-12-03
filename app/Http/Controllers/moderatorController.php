@@ -152,9 +152,10 @@ class moderatorController extends Controller
 
    public function low_acccuracy_post_render(Request $request){
       session(['user_id' => 1]); 
-      $post_reports=DB::table('Post_reports')
-               ->where('status','moderator')->get();
+      $post_reports=DB::table('articles')
+               ->join('article_accuracys','article_accuracys.article_id','=','articles.article_id')
+               ->get();
       
-      return view('moderator.reported_post')-> with('post_reports',$post_reports);
+      return view('moderator.low_acccuracy_post')-> with('post_reports',$post_reports);
    }  
 }
