@@ -19,8 +19,9 @@ class moderatorController extends Controller
 
    public function reported_post(Request $request){
       session(['user_id' => 1]); 
-   	$post_reports=DB::table('Post_reports')
-   				->where('status','moderator')->get();
+   	$post_reports=DB::table('articles')
+               ->join('post_reports','post_reports.article_id','=','articles.article_id')
+   				->where('post_reports.status','moderator')->get();
    	
    	return view('moderator.reported_post')-> with('post_reports',$post_reports);
    }
@@ -147,5 +148,13 @@ class moderatorController extends Controller
          $notice->save();
          return redirect()->route('moderator.notice');
 
+   }
+
+   public function low_acccuracy_post_render(Request $request){
+      session(['user_id' => 1]); 
+      $post_reports=DB::table('Post_reports')
+               ->where('status','moderator')->get();
+      
+      return view('moderator.reported_post')-> with('post_reports',$post_reports);
    }  
 }

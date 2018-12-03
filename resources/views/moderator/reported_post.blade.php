@@ -10,9 +10,7 @@
 		<table>
 		@foreach($post_reports as $post_report)
 			<tr>
-				<td>Report NO:</td>
-				<td>{{$post_report->report_id }}</td>
-				<td>{{$post_report->status}}</td>
+				<td>{{$post_report->article}}</td>
 	<form method="post">
 		@csrf
 				<td><input type="checkbox" name="statusyes[]" value={{$post_report->report_id }} >report to admin  <input type="checkbox" name="statusno[]" value={{$post_report->report_id}} >wrong report </td>
