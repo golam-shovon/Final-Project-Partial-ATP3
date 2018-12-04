@@ -96,7 +96,7 @@ class super_userController extends Controller
    public function notice_index(Request $request){
       session(['user_id' => 1]); 
       
-      return view('moderator.notice_index');
+      return view('super_user.notice_index');
    }  
 
    public function create_notice_render(Request $request){
