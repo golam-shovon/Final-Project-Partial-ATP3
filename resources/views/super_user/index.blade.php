@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Super User  Dash Board</title>
+
+    <body>
+    	<a href="{{route('super_user.reported_post')}}">Reported Post</a>
+    	<a href="{{route('super_user.unverified_post')}}">Unverfied Post</a>
+    	<a href="{{route('moderator.delete_post')}}">Delete Post</a>
+    	<a href="{{route('super_user.notice')}}">Notice</a>
+        <a href="{{route('super_user.low_accuracy')}}">Low Acccuracy Posts</a>
+
+    </body>
+
+</html>

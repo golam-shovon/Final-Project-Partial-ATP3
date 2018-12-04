@@ -74,7 +74,7 @@ class moderatorController extends Controller
       //$post_report->save();
       DB::table('articles')
                ->where('article_id',$article_id)
-              ->update(['verification' => 'yes']);
+               ->update(['verification' => 'yes']);
          
    }
 

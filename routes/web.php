@@ -26,6 +26,18 @@ Route::get('/moderator/notice', 'moderatorController@notice_index')->name('moder
 Route::get('/moderator/notice/create', 'moderatorController@create_notice_render')->name('moderator.notice.create');
 Route::post('/moderator/notice/create', 'moderatorController@create_notice_store');
 Route::get('/moderator/low_accuracy', 'moderatorController@low_acccuracy_post_render')->name('moderator.low_accuracy');
+Route::get('/super_user', 'super_userController@index')->name('super_user.index');
+Route::get('/super_user/reportedpost', 'super_userController@reported_post')->name('super_user.reported_post');
+Route::post('/super_user/reportedpost', 'super_userController@status_update_reported_post');
+Route::get('/super_user/unverifiedpost', 'super_userController@unverified_post')->name('super_user.unverified_post');
+Route::post('/super_user/unverifiedpost', 'super_userController@verification_update_articles');
+Route::get('/super_user/notice', 'super_userController@notice_index')->name('super_user.notice');
+Route::get('/super_user/notice/create', 'super_userController@create_notice_render')->name('super_user.notice.create');
+Route::post('/super_user/notice/create', 'super_userController@create_notice_store');
+Route::get('/super_user/low_accuracy', 'super_userController@low_acccuracy_post_render')->name('super_user.low_accuracy');
+
+
+
 
 
 

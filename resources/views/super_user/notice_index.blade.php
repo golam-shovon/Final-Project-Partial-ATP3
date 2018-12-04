@@ -4,9 +4,11 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Home Page</title>
+        <title>Notice  Dash Board</title>
 
-        <a href="{{route('moderator.index')}}">Modearator</a>
-        <a href="{{route('super_user.index')}}">super_user</a>
+    <body>
+    	<a href="{{route('super_user.notice.create')}}">Create New Notice</a>
+
+    </body>
 
 </html>
