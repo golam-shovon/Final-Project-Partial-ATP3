@@ -179,10 +179,7 @@ class super_userController extends Controller
       ->join('article_ratings','article_ratings.commenter_id','=','user_performances.user_id')
       ->join('comment_reports','comment_reports.comment_id','=','article_ratings.comment_id')      
       ->where('comment_reports.comment_id',$comment_id)
-      ->increment('user_performances.reported_comment');        
-
-
-         
+      ->increment('user_performances.reported_comment');                 
    }
 
    foreach($statuswrong as $comment_id){
@@ -192,7 +189,7 @@ class super_userController extends Controller
       //$post_report->save();   
         DB::table('comment_reports')
               ->where('comment_id',$comment_id)
-               ->delete();
+              ->delete();
                       
    }
 
@@ -204,22 +201,13 @@ class super_userController extends Controller
       return view('super_user.comment_reports')-> with('post_reports',$post_reports);
    }  
 
-   //public function user_list(Request $request){
-     // session(['user_id' => 1]); 
-	//$users=DB::table('users')
-               //->join('articles','articles.user_id','=','users.user_id')
-               //->join('article_saves','article_saves.user_id','=','users.user_id')
-               //->select('articles.user_id as writer','users.user_id  as id','article_saves.user_id as save_user','users.user_id as id',DB::raw('count(*) as article, articles.user_id'),DB::raw('count(*) as article_saved , article_saves.user_id'))
-			   //->groupBy('save_user')  
-
-			   //->groupBy('writer')
-            //->groupBy('id')          
-               //->join('post_reports','post_reports.user_id','=','users.user_id') 
-               //->join('article_ratings','article_ratings.commenter_id','=','users.user_id')
-               //->join('comment_reports','comment_reports.user_id','=','users.user_id')            
-               //->get();
+   public function user_list(Request $request){
+      session(['user_id' => 1]); 
+	$users=DB::table('user_performances')
+         ->join('users','users.user_id','=','user_performances.user_id')       
+         ->get();
 
 
-      //return view('super_user.user_list')-> with('users',$users);
-   //}  
+      return view('super_user.user_list')-> with('users',$users);
+   }  
 }

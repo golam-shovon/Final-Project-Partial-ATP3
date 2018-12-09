@@ -11,14 +11,27 @@
 			<tr>
 				<td>Name</td>
 				<td>Number Of Articles Written</td>
+				<td>Number Of Articles Verified</td>
 				<td>Number Of Articles Saved</td>
+				<td>Number Of Articles Reported</td>
+				<td>Number Of Articles Reports</td>
+				<td>Number Of Comments</td>
+				<td>Number Of Reported Comment</td>
+				<td>Number Of Comments Reported</td>
+				<td>Moderator Level</td>
 			</tr>
 		@foreach($users as $user)
 			<tr>
-				<td>{{$user->id}}</td>
-				<td>{{$user->article}}</td>
+				<td>{{$user->name}}</td>
+				<td>{{$user->article_written}}</td>
+				<td>{{$user->article_verified}}</td>
 				<td>{{$user->article_saved}}</td>
-		
+				<td>{{$user->article_reported}}</td>
+				<td>{{$user->reported_article}}</td>		
+				<td>{{$user->commnent_number}}</td>
+				<td>{{$user->reported_comment}}</td>
+				<td>{{$user->comment_reported}}</td>
+
 			</tr>
 		@endforeach		
 		</table>
