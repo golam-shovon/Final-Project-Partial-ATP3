@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Post_report;
 use App\Article;
 use App\Notice;
+use App\User;
+use App\Article_ratings;
+use App\Comment_reports;
+use App\Article_saves;
+use App\user_performance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -35,9 +40,18 @@ class super_userController extends Controller
       //$post_report->status='admin';
       //$post_report->save();
    	DB::table('articles')
-    ->join('post_reports','post_reports.article_id','=','articles.article_id')
+      ->join('post_reports','post_reports.article_id','=','articles.article_id')
    	->where('post_reports.report_id',$report_id)
    	->update(['articles.verification' => 'reported']);
+
+
+      DB::table('user_performances')
+      ->join('articles','articles.user_id','=','user_performances.user_id')
+      ->join('post_reports','post_reports.article_id','=','articles.article_id')        
+      ->where('post_reports.report_id',$report_id)
+      ->increment('user_performances.reported_article');   
+
+
    }
 
    foreach($statuswrong as $report_id){
@@ -45,7 +59,7 @@ class super_userController extends Controller
       //$post_report->status='wrong';
       //$post_report->save();
    	DB::table('articles')
-    ->join('post_reports','post_reports.article_id','=','articles.article_id')
+      ->join('post_reports','post_reports.article_id','=','articles.article_id')
    	->where('post_reports.report_id',$report_id)
    	->update(['articles.verification' => 'wrong']);
    }   
@@ -75,6 +89,13 @@ class super_userController extends Controller
       DB::table('articles')
                ->where('article_id',$article_id)
                ->update(['verification' => 'yes']);
+
+      DB::table('user_performances')
+      ->join('articles','articles.user_id','=','user_performances.user_id')       
+      ->where('article_id',$article_id)
+      ->increment('user_performances.article_verified');        
+
+
          
    }
 
@@ -130,4 +151,23 @@ class super_userController extends Controller
       
       return view('super_user.low_accuracy_post')-> with('post_reports',$post_reports);
    }  
+
+   //public function user_list(Request $request){
+     // session(['user_id' => 1]); 
+	//$users=DB::table('users')
+               //->join('articles','articles.user_id','=','users.user_id')
+               //->join('article_saves','article_saves.user_id','=','users.user_id')
+               //->select('articles.user_id as writer','users.user_id  as id','article_saves.user_id as save_user','users.user_id as id',DB::raw('count(*) as article, articles.user_id'),DB::raw('count(*) as article_saved , article_saves.user_id'))
+			   //->groupBy('save_user')  
+
+			   //->groupBy('writer')
+            //->groupBy('id')          
+               //->join('post_reports','post_reports.user_id','=','users.user_id') 
+               //->join('article_ratings','article_ratings.commenter_id','=','users.user_id')
+               //->join('comment_reports','comment_reports.user_id','=','users.user_id')            
+               //->get();
+
+
+      //return view('super_user.user_list')-> with('users',$users);
+   //}  
 }

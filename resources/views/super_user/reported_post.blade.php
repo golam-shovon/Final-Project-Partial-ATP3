@@ -11,6 +11,7 @@
 		@foreach($post_reports as $post_report)
 			<tr>
 				<td>{{$post_report->article}}</td>
+				<td>{{$post_report->report}}</td>
 	<form method="post">
 		@csrf
 				<td><input type="checkbox" name="statusyes[]" value={{$post_report->report_id }} >do not show post <input type="checkbox" name="statusno[]" value={{$post_report->report_id}} >wrong report </td>

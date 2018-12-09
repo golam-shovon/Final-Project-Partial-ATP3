@@ -35,6 +35,7 @@ Route::get('/super_user/notice', 'super_userController@notice_index')->name('sup
 Route::get('/super_user/notice/create', 'super_userController@create_notice_render')->name('super_user.notice.create');
 Route::post('/super_user/notice/create', 'super_userController@create_notice_store');
 Route::get('/super_user/low_accuracy', 'super_userController@low_acccuracy_post_render')->name('super_user.low_accuracy');
+//Route::get('/super_user/user_list', 'super_userController@user_list')->name('super_user.user_list');
 
 
 

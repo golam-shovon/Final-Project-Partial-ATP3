@@ -8,7 +8,7 @@
 
     <body>
     	<a href="{{route('moderator.notice.create')}}">Create New Notice</a>
-
+    	
     </body>
 
 </html>
