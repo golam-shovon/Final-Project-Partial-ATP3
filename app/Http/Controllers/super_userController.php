@@ -152,6 +152,58 @@ class super_userController extends Controller
       return view('super_user.low_accuracy_post')-> with('post_reports',$post_reports);
    }  
 
+   public function comment_reports(Request $request){
+      session(['user_id' => 1]); 
+      $post_reports=DB::table('article_ratings')
+               ->join('comment_reports','comment_reports.comment_id','=','article_ratings.comment_id')
+               ->get();
+      
+      return view('super_user.comment_reports')-> with('post_reports',$post_reports);
+   }   
+
+   public function comment_reports_do(Request $request){
+      session(['user_id' => 1]); 
+
+      $statusadmin[]=$request['statusyes'];
+      $statuswrong[]=$request['statusno'];
+
+      foreach($statusadmin as $comment_id){
+      //$post_report=Post_report::find($report_id);
+      //$post_report->status='admin';
+      //$post_report->save();
+      DB::table('article_ratings')
+               ->where('comment_id',$comment_id)
+               ->delete();
+
+      DB::table('user_performances')
+      ->join('article_ratings','article_ratings.commenter_id','=','user_performances.user_id')
+      ->join('comment_reports','comment_reports.comment_id','=','article_ratings.comment_id')      
+      ->where('comment_reports.comment_id',$comment_id)
+      ->increment('user_performances.reported_comment');        
+
+
+         
+   }
+
+   foreach($statuswrong as $comment_id){
+      session(['user_id' => 1]); 
+      //$post_report=Post_report::find($report_id);
+      //$post_report->status='wrong';
+      //$post_report->save();   
+        DB::table('comment_reports')
+              ->where('comment_id',$comment_id)
+               ->delete();
+                      
+   }
+
+
+      $post_reports=DB::table('article_ratings')
+               ->join('comment_reports','comment_reports.comment_id','=','article_ratings.comment_id')
+               ->get();
+      
+      return view('super_user.comment_reports')-> with('post_reports',$post_reports);
+   }  
+
    //public function user_list(Request $request){
      // session(['user_id' => 1]); 
 	//$users=DB::table('users')

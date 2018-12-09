@@ -12,7 +12,8 @@
     	<a href="{{route('moderator.delete_post')}}">Delete Post</a>
     	<a href="{{route('super_user.notice')}}">Notice</a>
         <a href="{{route('super_user.low_accuracy')}}">Low Acccuracy Posts</a>
-
+        <a href="{{route('super_user.comment_report')}}">Comment Reports</a>
+        <a href="{{route('super_user.user_list')}}">User List</a>
     </body>
 
 </html>
