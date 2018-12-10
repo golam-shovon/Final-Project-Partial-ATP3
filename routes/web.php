@@ -38,6 +38,8 @@ Route::get('/super_user/low_accuracy', 'super_userController@low_acccuracy_post_
 Route::get('/super_user/user_list', 'super_userController@user_list')->name('super_user.user_list');
 Route::get('/super_user/comment_reports', 'super_userController@comment_reports')->name('super_user.comment_report');
 Route::post('/super_user/comment_reports', 'super_userController@comment_reports_do');
+Route::get('/super_user/user_list_updated', 'super_userController@increase_level')->name('super_user.increase_limit');
+
 
 
 

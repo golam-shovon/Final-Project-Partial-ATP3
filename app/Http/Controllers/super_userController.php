@@ -210,4 +210,19 @@ class super_userController extends Controller
 
       return view('super_user.user_list')-> with('users',$users);
    }  
+
+   public function increase_level(Request $request){
+      session(['user_id' => 1]); 
+      DB::table('users')      
+      ->where('user_id',$request['id'])
+      ->increment('moderator_level',1); 
+
+
+   $users=DB::table('user_performances')
+         ->join('users','users.user_id','=','user_performances.user_id')       
+         ->get();
+
+
+      return view('super_user.user_list')-> with('users',$users);
+   }     
 }

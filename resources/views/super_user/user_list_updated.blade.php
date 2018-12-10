@@ -23,7 +23,7 @@
 		@foreach($users as $user)
 			<tr>
 				<td>{{$user->name}}</td>
-				@php($id=$user->user_id)@endphp
+				@php($id=$user->user_id)
 				<td>{{$user->article_written}}</td>
 				<td>{{$user->article_verified}}</td>
 				<td>{{$user->article_saved}}</td>
