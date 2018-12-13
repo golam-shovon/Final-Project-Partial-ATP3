@@ -8,6 +8,10 @@
 		<a href="{{route('super_user.index')}}">Back</a> 
 
 		<table>
+			<tr>
+				<td>comment  </td>
+				<td>report</td>
+			</tr>			
 		@foreach($post_reports as $post_report)
 			<tr>
 				<td>{{$post_report->comment}}</td>

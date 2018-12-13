@@ -17,6 +17,7 @@ Route::get('/', function () {
 Route::get('/login', 'LoginController@index')->name('login.index');
 Route::get('/moderator', 'moderatorController@index')->name('moderator.index');
 Route::get('/moderator/reportedpost', 'moderatorController@reported_post')->name('moderator.reported_post');
+Route::get('/searchValue','moderatorController@search');
 Route::post('/moderator/reportedpost', 'moderatorController@status_update_reported_post');
 Route::get('/moderator/unverifiedpost', 'moderatorController@unverified_post')->name('moderator.unverified_post');
 Route::post('/moderator/unverifiedpost', 'moderatorController@verification_update_articles');

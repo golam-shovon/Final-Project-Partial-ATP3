@@ -4,13 +4,18 @@
 	<title>Details</title>
 </head>
 <body>
-		<h2>Reported Posts </h2>
+		<h2>UNverfied  Posts </h2>
 		<a href="{{route('moderator.index')}}">Back</a> 
 
 		<table>
+			<tr>
+				<td>article_id </td>
+				<td>article</td>
+				<td>topic</td>
+				<td>type</td>	
+			</tr>
 		@foreach($articles as $article)
 			<tr>
-				<td>Report NO:</td>
 				<td>{{$article->article_id }}</td>
 				<td>{{$article->article}}</td>
 				<td>{{$article->topic}}</td>

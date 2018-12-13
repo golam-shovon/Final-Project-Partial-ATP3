@@ -158,4 +158,37 @@ class moderatorController extends Controller
       
       return view('moderator.low_acccuracy_post')-> with('post_reports',$post_reports);
    }  
+
+    public function search(Request $request)
+    {
+        if($request->ajax())
+        {
+         $output="";
+            $articles=DB::table('articles')
+                     ->join('post_reports','post_reports.article_id','=','articles.article_id')
+                     ->where('article','LIKE','%'.$request->search."%")
+                     ->orWhere('report','LIKE','%'.$request->search."%")
+                     ->get();
+
+            if($articles)
+            {
+                foreach ($articles as $key => $art)
+                {
+                    if($art->status='moderator')
+                    {
+                     $output.=
+                     '<tr>'.
+
+                     '<td>'.$art->article_id.'</td>'.
+                     '<td>'.$art->article.'</td>'.
+                     '<td>'.$art->report.'</td>'.
+                     '</tr>';
+
+                    }
+            }
+            return Response($output);
+         }                     
+      }
+   }
+
 }
