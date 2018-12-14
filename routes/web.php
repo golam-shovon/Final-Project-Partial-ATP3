@@ -40,8 +40,9 @@ Route::get('/super_user/user_list', 'super_userController@user_list')->name('sup
 Route::get('/super_user/comment_reports', 'super_userController@comment_reports')->name('super_user.comment_report');
 Route::post('/super_user/comment_reports', 'super_userController@comment_reports_do');
 Route::get('/super_user/user_list_updated', 'super_userController@increase_level')->name('super_user.increase_limit');
-
-
+Route::get('/moderator/notice/see', 'moderatorController@see_notice_render')->name('moderator.notice.see');
+Route::post('/moderator/notice/see', 'moderatorController@delete_notice');
+Route::get('/searchValueNotice','moderatorController@searchnotice');
 
 
 

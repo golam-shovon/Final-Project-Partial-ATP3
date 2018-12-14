@@ -191,4 +191,59 @@ class moderatorController extends Controller
       }
    }
 
+   public function see_notice_render(Request $request){
+      session(['user_id' => 1]); 
+    $notices=DB::table('notices')->get();
+    
+    return view('moderator.notice_see')-> with('notices',$notices);
+   }   
+ 
+   public function delete_notice(Request $request){
+      session(['user_id' => 1]); 
+      $statusadmin[]=$request['statusyes'];
+
+      foreach($statusadmin as $notice_id){
+      //$post_report=Post_report::find($report_id);
+      //$post_report->status='admin';
+      //$post_report->save();
+      DB::table('notices')
+               ->where('notice_id',$notice_id)
+               ->delete();
+
+      $notices=DB::table('notices')->get();
+    
+    return view('moderator.notice_see')-> with('notices',$notices);           
+         
+      }
+    }
+    public function searchnotice(Request $request)
+    {
+        if($request->ajax())
+        {
+         $output="";
+            $articles=DB::table('notices')
+                     ->where('notice_title','LIKE','%'.$request->search."%")
+                     ->orWhere('notice','LIKE','%'.$request->search."%")
+                     ->get();
+
+            if($articles)
+            {
+                foreach ($articles as $key => $art)
+                {
+                    if($art->status='moderator')
+                    {
+                     $output.=
+                     '<tr>'.
+
+                     '<td>'.$art->notice_id.'</td>'.
+                     '<td>'.$art->notice_title.'</td>'.
+                     '<td>'.$art->notice.'</td>'.
+                     '</tr>';
+
+                    }
+            }
+            return Response($output);
+         }                     
+      }
+   }    
 }
