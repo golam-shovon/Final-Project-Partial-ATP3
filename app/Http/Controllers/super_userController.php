@@ -225,4 +225,32 @@ class super_userController extends Controller
 
       return view('super_user.user_list')-> with('users',$users);
    }     
+
+    public function searchuser(Request $request)
+    {
+        if($request->ajax())
+        {
+         $output="";
+            $users=DB::table('users')
+                     ->where('name','LIKE','%'.$request->search."%")
+                     ->get();
+
+            if($users)
+            {
+                foreach ($users as $key => $user)
+                {
+
+                     $output.=
+                     '<tr>'.
+
+                     '<td>'.$user->user_id.'</td>'.
+                     '</tr>';
+
+
+            }
+            return Response($output);
+         }                     
+      }
+   } 
 }
+

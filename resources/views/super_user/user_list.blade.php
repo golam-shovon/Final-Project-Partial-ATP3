@@ -1,14 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Details</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="_token" content="{{ csrf_token() }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>		
+	<title>User List</title>
 </head>
 <body>
-		<h2>User LIst  </h2>
-		<a href="{{route('super_user.index')}}">Back</a> 
+		<h2>User List  </h2>
+		<a href="{{route('super_user.index')}}">Back</a> 	
+    <span>Search for Users : </span><input type="text" id="search" name="search" placeholder="type here to search"></input>
 
+    <div></div>
+	<script type="text/javascript">
+		$('#search').on('keyup',function(){
+			$value=$(this).val();
+			$.ajax({
+				type : 'get',
+				url : '{{URL::to('searchValueUser')}}',
+				data:{'search':$value},
+				success:function(data){
+					$('div').html(data);
+				}
+			});
+		})
+	</script>
+
+	<script type="text/javascript">
+		$.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+	</script>	
 		<table>
 			<tr>
+				<td>ID</td>
 				<td>Name</td>
 				<td>Number Of Articles Written</td>
 				<td>Number Of Articles Verified</td>
@@ -22,8 +47,8 @@
 			</tr>
 		@foreach($users as $user)
 			<tr>
+				<td>{{$user->user_id}}</td>
 				<td>{{$user->name}}</td>
-				@php($id=$user->user_id)@endphp
 				<td>{{$user->article_written}}</td>
 				<td>{{$user->article_verified}}</td>
 				<td>{{$user->article_saved}}</td>
@@ -33,7 +58,11 @@
 				<td>{{$user->reported_comment}}</td>
 				<td>{{$user->comment_reported}}</td>
 				<td>{{$user->moderator_level}}</td>
-				<td><a href="{{route('super_user.increase_limit')}}">Increase Moderator Level</a></td>
+	<form method="post">
+		@csrf
+		@php($id=$user->user_id)@endphp
+		<td><input type="submit" name="submit" value="Increase Level" /></td>
+	</form>				
 			</tr>
 		@endforeach		
 		</table>

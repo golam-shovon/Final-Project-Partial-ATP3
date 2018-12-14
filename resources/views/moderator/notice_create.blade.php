@@ -7,6 +7,7 @@
     <title>Notice Create</title>
 </head>
 <body>
+    <a href="{{route('moderator.index')}}">Back</a>     
     <a href="{{route('moderator.notice.see')}}">See Publish Notices</a> 
     @if(session()->has('user_id'))
     <div id="notice_post">

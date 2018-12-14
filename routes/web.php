@@ -37,12 +37,14 @@ Route::get('/super_user/notice/create', 'super_userController@create_notice_rend
 Route::post('/super_user/notice/create', 'super_userController@create_notice_store');
 Route::get('/super_user/low_accuracy', 'super_userController@low_acccuracy_post_render')->name('super_user.low_accuracy');
 Route::get('/super_user/user_list', 'super_userController@user_list')->name('super_user.user_list');
+Route::post('/super_user/user_list', 'super_userController@increase_level');
 Route::get('/super_user/comment_reports', 'super_userController@comment_reports')->name('super_user.comment_report');
 Route::post('/super_user/comment_reports', 'super_userController@comment_reports_do');
 Route::get('/super_user/user_list_updated', 'super_userController@increase_level')->name('super_user.increase_limit');
 Route::get('/moderator/notice/see', 'moderatorController@see_notice_render')->name('moderator.notice.see');
 Route::post('/moderator/notice/see', 'moderatorController@delete_notice');
 Route::get('/searchValueNotice','moderatorController@searchnotice');
+Route::get('/searchValueUser','super_userController@searchuser');
 
 
 

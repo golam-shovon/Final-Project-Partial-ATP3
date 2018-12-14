@@ -6,9 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="_token" content="{{ csrf_token() }}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>	
-	<title>Details</title>
+	<title>Notices Published</title>
 </head>
 <body>
+	<a href="{{route('moderator.notice.create')}}">Back</a> 	
     <span>Search for notices : </span><input type="text" id="search" name="search" placeholder="type here to search"></input>
 
     <div></div>

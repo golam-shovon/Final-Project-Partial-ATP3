@@ -230,8 +230,7 @@ class moderatorController extends Controller
             {
                 foreach ($articles as $key => $art)
                 {
-                    if($art->status='moderator')
-                    {
+
                      $output.=
                      '<tr>'.
 
@@ -239,8 +238,6 @@ class moderatorController extends Controller
                      '<td>'.$art->notice_title.'</td>'.
                      '<td>'.$art->notice.'</td>'.
                      '</tr>';
-
-                    }
             }
             return Response($output);
          }                     
