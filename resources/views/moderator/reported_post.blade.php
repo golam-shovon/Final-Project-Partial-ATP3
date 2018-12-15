@@ -20,7 +20,7 @@
     <link rel="stylesheet" type="text/css" href="/vendor/perfect-scrollbar/perfect-scrollbar.css">
 <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="/css/util.css">
-    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/css/maintablev2.css">
 <!--===============================================================================================-->  
     <meta name="_token" content="{{ csrf_token() }}">
     <!-- Favicon -->
@@ -92,16 +92,16 @@
     <!-- ***** Breadcumb Area Start ***** -->
     <div class="breadcumb-area height-400 bg-img bg-overlay" style="background-image: url(img/bg-img/sajek.jpg)">	</div>
 		<h2>Reported Posts </h2>
-<a href="{{route('moderator.index')}}">Back</a> 
+
 
     <div class="limiter">
         <div class="container-table100">
             <div class="wrap-table100">
                     <div class="table">
                         <div class="row header">
-                                    <div class="cell">
-                                        Article
-                                    </div>
+                            <div class="cell">
+                                Article
+                            </div>
 
                             <div class="cell">
                                 Report
@@ -124,8 +124,7 @@
                             <div class="cell" data-title="Article">
                                 {{$post_report->article}}
                             </div>
-                        </td>
-                        <td>
+                            
                             <div class="cell" data-title="Report">
                                 {{$post_report->report}}
                             </div>
@@ -144,13 +143,10 @@
                         @endforeach 
 
                         <div class="row">
-                            <td>
                                 <div class="cell" data-title="Article">
-                                <input type="submit" name="submit" value="Submit" />
-                            </div>
-
-
-                        </div>                                                                          
+                                    <input type="submit" name="submit" value="Submit" />
+                                </div>
+                       </div>                                                                          
                     </div>
 
                 </div>
