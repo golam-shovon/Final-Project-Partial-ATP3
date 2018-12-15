@@ -215,7 +215,7 @@ class super_userController extends Controller
       session(['user_id' => 1]); 
       DB::table('users')      
       ->where('user_id',$request['id'])
-      ->increment('moderator_level',1); 
+      ->increment('moderator_level','1'); 
 
 
    $users=DB::table('user_performances')
