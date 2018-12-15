@@ -77,6 +77,10 @@
 		<a href="{{route('moderator.index')}}">Back</a> 
 
 		<table>
+            <tr>
+                <td>rticle</td>
+                <td>report</td>
+            </tr>            
 		@foreach($post_reports as $post_report)
 			<tr>
 				<td>{{$post_report->article}}</td>
