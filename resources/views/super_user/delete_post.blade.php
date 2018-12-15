@@ -74,7 +74,7 @@
     <!-- ***** Breadcumb Area Start ***** -->
     <div class="breadcumb-area height-400 bg-img bg-overlay" style="background-image: url(img/bg-img/sajek.jpg)">	
 		<h2>Delete Posts </h2>
-		<a href="{{route('moderator.index')}}">Back</a> 
+		<a href="{{route('super_user.index')}}">Back</a> 
 
 		<table>
 		@foreach($articles as $article)

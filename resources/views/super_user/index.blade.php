@@ -15,7 +15,7 @@
     <link href="/css/responsive/responsive.css" rel="stylesheet">   
 
         <title>Super User  Dash Board</title>
-
+</head>
     <body>
     <!-- Preloader -->
     <div id="preloader">
