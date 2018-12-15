@@ -6,6 +6,23 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="_token" content="{{ csrf_token() }}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>	
+<!--===============================================================================================-->  
+    <link rel="icon" type="image/png" href="/images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/vendor/animate/animate.css">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/vendor/perfect-scrollbar/perfect-scrollbar.css">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/css/util.css">
+    <link rel="stylesheet" type="text/css" href="/css/maintablev2.css">
+<!--===============================================================================================-->  
+    <meta name="_token" content="{{ csrf_token() }}">
     <!-- Favicon -->
     <link rel="icon" href="/img/core-img/favicon.ico">
 
@@ -13,7 +30,7 @@
     <link href="/style.css" rel="stylesheet">
 
     <!-- Responsive CSS -->
-    <link href="/css/responsive/responsive.css" rel="stylesheet">
+    <link href="/css/responsive/responsive.css" rel="stylesheet">   
 
 	<title>Notice Published</title>
 </head>
@@ -78,7 +95,7 @@
 	<a href="{{route('moderator.notice.create')}}">Back</a> 	
     <span>Search for notices : </span><input type="text" id="search" name="search" placeholder="type here to search"></input>
 
-    <div></div>
+    <div id='shv'></div>
 	<script type="text/javascript">
 		$('#search').on('keyup',function(){
 			$value=$(this).val();
@@ -87,7 +104,7 @@
 				url : '{{URL::to('searchValueNotice')}}',
 				data:{'search':$value},
 				success:function(data){
-					$('div').html(data);
+					$('#shv').html(data);
 				}
 			});
 		})
@@ -96,27 +113,64 @@
 	<script type="text/javascript">
 		$.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
 	</script>		
-	<table>
-			<tr>
-				<td>Notice Id</td>
-				<td>Notice Title</td>				
-				<td>Notice</td>
-				<td>Date</td>				
-			</tr>					
-		@foreach($notices as $notice)
-			<tr>
-				<td>{{$notice->notice_id}}</td>				
-				<td>{{$notice->notice_title}}</td>
-				<td>{{$notice->notice}}</td>
-				<td>{{$notice->created_at}}</td>
-	<form method="post">
-		@csrf
-				<td><input type="checkbox" name="statusyes[]" value={{$notice->notice_id }} >Delete </td>
-			</tr>
-		@endforeach
-		<td><input type="submit" name="submit" value="Submit" /></td>
-	</form>					
-	</table>
+    <div class="limiter">
+        <div class="container-table100">
+            <div class="wrap-table100">
+                    <div class="table">
+                        <div class="row header">
+                            <div class="cell">
+                                Notice
+                            </div>
+
+                            <div class="cell">
+                                Id
+                            </div> 
+
+                            <div class="cell">
+                                Date
+                            </div>   
+                            <div class="cell">
+                                
+                            </div>                                                                   
+                        </div>
+                        @foreach($notices as $notice)  
+
+
+                        <div class="row">
+
+                            <div class="cell" data-title="Notice">
+                                {{$notice->notice_title}} 
+
+                                {{$notice->notice}}
+                            </div>
+                            
+                           
+                            <div class="cell" data-title="Id">
+                                {{$notice->notice_id}}
+                            </div>
+                            <div class="cell" data-title="Date">
+                                {{$notice->created_at}}
+                            </div>                            
+                            
+                            <div class="cell" data-title="">
+                                <form method="post">
+                                     @csrf
+                                        <input type="checkbox" name="statusyes[]" value={{$notice->notice_id }} >Delete 
+                            </div>
+                        </div> 
+                        @endforeach 
+
+                        <div class="row">
+                                <div class="cell" data-title="Article">
+                                    <input type="submit" name="submit" value="Submit" />
+                                </div>
+                       </div>                                                
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
        <!-- ****** Footer Area Start ****** -->
         <footer class="dorne-footer-area">
@@ -143,6 +197,16 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     </footer>
     <!-- ****** Footer Area End ****** -->
 
+<!--===============================================================================================-->  
+    <script src="/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+    <script src="/vendor/bootstrap/js/popper.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+    <script src="/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+    <script src="/js/main.js"></script>
+    <script src="/js/main.js"></script>
     <!-- jQuery-2.2.4 js -->
     <script src="/js/jquery/jquery-2.2.4.min.js"></script>
     <!-- Popper js -->
@@ -155,7 +219,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDk9KNSL1jTv4MY9Pza6w8DJkpI_nHyCnk"></script>
     <script src="/js/google-map/location-map-active.js"></script>
     <!-- Active JS -->
-    <script src="/js/active.js"></script>          
+    <script src="/js/active.js"></script>  
+</body> 
     </body>
 
 </html>
