@@ -99,45 +99,60 @@
             <div class="wrap-table100">
                     <div class="table">
                         <div class="row header">
-                            <div class="cell">
-                                Article
-                            </div>
+                                    <div class="cell">
+                                        Article
+                                    </div>
+
                             <div class="cell">
                                 Report
                             </div>
+
                             <div class="cell">
                                 Do Not Show Post
                             </div> 
+
                             <div class="cell">
                                 Wrong Report
-                            </div>                                                                                
+                            </div>   
+                                                                            
                         </div>
                         @foreach($post_reports as $post_report)     
-                       
+
+
                         <div class="row">
+
                             <div class="cell" data-title="Article">
                                 {{$post_report->article}}
                             </div>
+                        </td>
+                        <td>
                             <div class="cell" data-title="Report">
                                 {{$post_report->report}}
                             </div>
+
                             <div class="cell" data-title="Do Not Show Post">
                                 <form method="post">
                                      @csrf
                                         <input type="checkbox" name="statusyes[]" value={{$post_report->report_id }} >do not show post 
                             </div>
+
                             <div class="cell" data-title=" Wrong Report">
                                  <input type="checkbox" name="statusno[]" value={{$post_report->report_id}} >wrong report   
                             </div>
 
                         </div> 
                         @endforeach 
+
                         <div class="row">
-                            <div class="cell" data-title="Article">
+                            <td>
+                                <div class="cell" data-title="Article">
                                 <input type="submit" name="submit" value="Submit" />
                             </div>
+
+
                         </div>                                                                          
                     </div>
+
                 </div>
             </div>
         </div>
