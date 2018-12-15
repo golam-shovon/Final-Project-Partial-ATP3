@@ -26,9 +26,10 @@ class super_userController extends Controller
    	$post_reports=DB::table('articles')
                ->join('post_reports','post_reports.article_id','=','articles.article_id')
    			   ->where('post_reports.status','admin')->get();
-   	
+         
    	return view('super_user.reported_post')-> with('post_reports',$post_reports);
    }
+
 
    public function status_update_reported_post(Request $request){
       session(['user_id' => 1]); 

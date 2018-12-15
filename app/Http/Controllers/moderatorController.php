@@ -22,8 +22,10 @@ class moderatorController extends Controller
    	$post_reports=DB::table('articles')
                ->join('post_reports','post_reports.article_id','=','articles.article_id')
    				->where('post_reports.status','moderator')->get();
-   	
-   	return view('moderator.reported_post')-> with('post_reports',$post_reports);
+   	  $getUserName=DB::table('users')
+                    ->where('user_id','=',$request->session()->get('user_id'))
+                    ->first();
+    return view('moderator.reported_post')-> with('post_reports',$post_reports)->with('username',$getUserName->name);
    }
 
    public function status_update_reported_post(Request $request){
@@ -50,8 +52,10 @@ class moderatorController extends Controller
               ->update(['status' => 'wrong']);
                       
    }
-
-   return view('moderator.index');
+      $getUserName=DB::table('users')
+                    ->where('user_id','=',$request->session()->get('user_id'))
+                    ->first();
+   return view('moderator.index')->with('username',$getUserName->name);
 
 }
    public function unverified_post(Request $request){
@@ -59,8 +63,11 @@ class moderatorController extends Controller
 
       $articles=DB::table('Articles')
                ->where('verification','no')->get();
-      
-      return view('moderator.unverified_post')-> with('articles',$articles);
+
+      $getUserName=DB::table('users')
+                    ->where('user_id','=',$request->session()->get('user_id'))
+                    ->first();      
+      return view('moderator.unverified_post')-> with('articles',$articles)->with('username',$getUserName->name);
    }
 
    public function verification_update_articles(Request $request){
@@ -89,7 +96,7 @@ class moderatorController extends Controller
                       
    }
 
-   return view('moderator.index');
+   return view('moderator.index')->with('username',$getUserName->name);
 
 }
 
@@ -98,8 +105,11 @@ class moderatorController extends Controller
 
       $articles=DB::table('Articles')
                ->get();
-      
-      return view('moderator.delete_post')-> with('articles',$articles);
+
+        $getUserName=DB::table('users')
+                    ->where('user_id','=',$request->session()->get('user_id'))
+                    ->first();     
+      return view('moderator.delete_post')-> with('articles',$articles)->with('username',$getUserName->name);
    }
 
    public function delete_articles(Request $request){
@@ -117,21 +127,32 @@ class moderatorController extends Controller
    }
       $articles=DB::table('Articles')
                ->get();
-      
-      return view('moderator.delete_post')-> with('articles',$articles);
+     
+      $getUserName=DB::table('users')
+                    ->where('user_id','=',$request->session()->get('user_id'))
+                    ->first();      
+      return view('moderator.delete_post')-> with('articles',$articles)->with('username',$getUserName->name);
  
    }  
 
    public function notice_index(Request $request){
       session(['user_id' => 1]); 
-      
-      return view('moderator.notice_index');
+    
+          $getUserName=DB::table('users')
+                    ->where('user_id','=',$request->session()->get('user_id'))
+                    ->first();
+
+      return view('moderator.notice_index')->with('username',$getUserName->name);
    }  
 
    public function create_notice_render(Request $request){
       session(['user_id' => 1]); 
 
-      return view('moderator.notice_create');      
+      $getUserName=DB::table('users')
+                    ->where('user_id','=',$request->session()->get('user_id'))
+                    ->first();
+
+      return view('moderator.notice_create')->with('username',$getUserName->name);      
    }  
 
    public function create_notice_store(Request $req){
@@ -156,8 +177,12 @@ class moderatorController extends Controller
       $post_reports=DB::table('articles')
                ->join('article_accuracys','article_accuracys.article_id','=','articles.article_id')
                ->get();
-      
-      return view('moderator.low_acccuracy_post')-> with('post_reports',$post_reports);
+ 
+        $getUserName=DB::table('users')
+                    ->where('user_id','=',$request->session()->get('user_id'))
+                    ->first();
+
+      return view('moderator.low_acccuracy_post')-> with('post_reports',$post_reports)->with('username',$getUserName->name);
    }  
 
     public function search(Request $request)
@@ -195,8 +220,12 @@ class moderatorController extends Controller
    public function see_notice_render(Request $request){
       session(['user_id' => 1]); 
     $notices=DB::table('notices')->get();
-    
-    return view('moderator.notice_see')-> with('notices',$notices);
+ 
+        $getUserName=DB::table('users')
+                    ->where('user_id','=',$request->session()->get('user_id'))
+                    ->first();
+
+    return view('moderator.notice_see')-> with('notices',$notices)->with('username',$getUserName->name);
    }   
  
    public function delete_notice(Request $request){
@@ -212,8 +241,12 @@ class moderatorController extends Controller
                ->delete();
 
       $notices=DB::table('notices')->get();
-    
-    return view('moderator.notice_see')-> with('notices',$notices);           
+
+      $getUserName=DB::table('users')
+                    ->where('user_id','=',$request->session()->get('user_id'))
+                    ->first();
+                        
+    return view('moderator.notice_see')-> with('notices',$notices)->with('username',$getUserName->name);           
          
       }
     }

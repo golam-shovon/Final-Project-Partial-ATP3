@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="_token" content="{{ csrf_token() }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>   
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="_token" content="{{ csrf_token() }}">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>	
+
     <!-- Favicon -->
-    <link rel="icon" href="/img/core-img/favicon.ico">
+    <link rel="icon" href="img/core-img/favicon.ico">
 
     <!-- Core Stylesheet -->
-    <link href="/style.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
 
     <!-- Responsive CSS -->
-    <link href="/css/responsive/responsive.css" rel="stylesheet">
+    <link href="css/responsive/responsive.css" rel="stylesheet">
+
 
 	<title>User List</title>
 </head>
@@ -70,6 +72,8 @@
                 </div>
             </div>
         </div>
+
+
     </header>
     <!-- ***** Header Area End ***** -->
 
@@ -81,7 +85,7 @@
 		<a href="{{route('super_user.index')}}">Back</a> 	
     <span>Search for Users : </span><input type="text" id="search" name="search" placeholder="type here to search"></input>
 
-    <div></div>
+    <div id='shv'></div>
 	<script type="text/javascript">
 		$('#search').on('keyup',function(){
 			$value=$(this).val();
@@ -90,7 +94,7 @@
 				url : '{{URL::to('searchValueUser')}}',
 				data:{'search':$value},
 				success:function(data){
-					$('div').html(data);
+					$('#shv').html(data);
 				}
 			});
 		})
@@ -141,12 +145,45 @@
 				<td>{{$user->moderator_level}}</td>
 	<form method="post">
 		@csrf
-		@php($id=$user->user_id)@endphp
+		<?$id=$user->user_id;?>
 		<td><input type="submit" name="submit" value="Increase Level" /></td>
 	</form>				
 			</tr>
 		@endforeach		
 		</table>
+
+     @foreach($users as $user)     
+    <section class="dorne-single-listing-area section-padding-100">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <!-- Single Listing Content -->
+                        <div class="col-12 col-lg-12">
+                            <div class="single-listing-content">
+                                <div class="contact-form">
+                                    <h2>{{$user->name}}</h2>
+                                    <h4>{{$user->id}}</h4>
+                                    <h4>Number Of Articles Written: {{$users->article_written}}</h4>
+                                    <h4>Number Of Articles Verified: {{$users->article_verified}}</h4>
+                                    <h4>Number Of Articles Saved: {{$users->article_saved}}</h4>
+                                    <h4>Number Of Articles Reported: {{$users->article_reported}}</h4>
+                                    <h4>Number Of Articles Reports: {{$users->reported_article}}</h4>
+                                    <h4>Number Of Commnets: {{$users->comment_number}}</h4>
+                                    <h4>Number Of Reported Comments: {{$users->reported_comment}}</h4>
+                                    <h4>Number Of Comments Reported: {{$users->comment_reported}}</h4>
+                                    <h4>Moderator Level:{{$users->moderator_level}}</h4>
+                                    <h4>    <form method="post">
+                                                    @csrf
+                                                    <?$id=$user->user_id;?>
+                                                    <input type="submit" name="submit" value="Increase Level" />
+                                            </form> 
+                                    </h4>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+    @endforeach
         <!-- ****** Footer Area Start ****** -->
         <footer class="dorne-footer-area">
         <div class="container-fluid">
@@ -173,17 +210,17 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <!-- ****** Footer Area End ****** -->
 
     <!-- jQuery-2.2.4 js -->
-    <script src="/js/jquery/jquery-2.2.4.min.js"></script>
+    <script src="js/jquery/jquery-2.2.4.min.js"></script>
     <!-- Popper js -->
-    <script src="/js/bootstrap/popper.min.js"></script>
+    <script src="js/bootstrap/popper.min.js"></script>
     <!-- Bootstrap-4 js -->
-    <script src="/js/bootstrap/bootstrap.min.js"></script>
+    <script src="js/bootstrap/bootstrap.min.js"></script>
     <!-- All Plugins js -->
-    <script src="/js/others/plugins.js"></script>
+    <script src="js/others/plugins.js"></script>
     <!-- Google Maps js -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDk9KNSL1jTv4MY9Pza6w8DJkpI_nHyCnk"></script>
-    <script src="/js/google-map/location-map-active.js"></script>
+    <script src="js/google-map/location-map-active.js"></script>
     <!-- Active JS -->
-    <script src="/js/active.js"></script>    
+    <script src="js/active.js"></script>
 </body>
 </html>
