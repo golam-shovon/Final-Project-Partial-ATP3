@@ -4,6 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->  
+    <link rel="icon" type="image/png" href="/images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/vendor/animate/animate.css">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/vendor/perfect-scrollbar/perfect-scrollbar.css">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/css/util.css">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+<!--===============================================================================================-->  
     <meta name="_token" content="{{ csrf_token() }}">
     <!-- Favicon -->
     <link rel="icon" href="/img/core-img/favicon.ico">
@@ -13,7 +31,7 @@
 
     <!-- Responsive CSS -->
     <link href="/css/responsive/responsive.css" rel="stylesheet">		
-	<title>Details</title>
+	<title>Reportes Articles</title>
 </head>
 <body>
     <!-- Preloader -->
@@ -74,25 +92,58 @@
     <!-- ***** Breadcumb Area Start ***** -->
     <div class="breadcumb-area height-400 bg-img bg-overlay" style="background-image: url(img/bg-img/sajek.jpg)">	</div>
 		<h2>Reported Posts </h2>
-		<a href="{{route('moderator.index')}}">Back</a> 
+<a href="{{route('moderator.index')}}">Back</a> 
 
-		<table>
-            <tr>
-                <td>rticle</td>
-                <td>report</td>
-            </tr>            
-		@foreach($post_reports as $post_report)
-			<tr>
-				<td>{{$post_report->article}}</td>
-				<td>{{$post_report->report}}</td>
-	<form method="post">
-		@csrf
-				<td><input type="checkbox" name="statusyes[]" value={{$post_report->report_id }} >do not show post <input type="checkbox" name="statusno[]" value={{$post_report->report_id}} >wrong report </td>
-			</tr>
-		@endforeach
-		<td><input type="submit" name="submit" value="Submit" /></td>
-	</form>
-		</table>
+    <div class="limiter">
+        <div class="container-table100">
+            <div class="wrap-table100">
+                    <div class="table">
+                        <div class="row header">
+                            <div class="cell">
+                                Article
+                            </div>
+                            <div class="cell">
+                                Report
+                            </div>
+                            <div class="cell">
+                                Do Not Show Post
+                            </div> 
+                            <div class="cell">
+                                Wrong Report
+                            </div>                                                                                
+                        </div>
+                        @foreach($post_reports as $post_report)     
+                       
+                        <div class="row">
+                            <div class="cell" data-title="Article">
+                                {{$post_report->article}}
+                            </div>
+                            <div class="cell" data-title="Report">
+                                {{$post_report->report}}
+                            </div>
+                            <div class="cell" data-title="Do Not Show Post">
+                                <form method="post">
+                                     @csrf
+                                        <input type="checkbox" name="statusyes[]" value={{$post_report->report_id }} >do not show post 
+                            </div>
+                            <div class="cell" data-title=" Wrong Report">
+                                 <input type="checkbox" name="statusno[]" value={{$post_report->report_id}} >wrong report   
+                            </div>
+
+                        </div> 
+                        @endforeach 
+                        <div class="row">
+                            <div class="cell" data-title="Article">
+                                <input type="submit" name="submit" value="Submit" />
+                            </div>
+                        </div>                                                                          
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+
+
         <!-- ****** Footer Area Start ****** -->
         <footer class="dorne-footer-area">
         <div class="container-fluid">
@@ -117,7 +168,16 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         </div>
     </footer>
     <!-- ****** Footer Area End ****** -->
-
+<!--===============================================================================================-->  
+    <script src="/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+    <script src="/vendor/bootstrap/js/popper.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+    <script src="/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+    <script src="/js/main.js"></script>
+    <script src="/js/main.js"></script>
     <!-- jQuery-2.2.4 js -->
     <script src="/js/jquery/jquery-2.2.4.min.js"></script>
     <!-- Popper js -->
