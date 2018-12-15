@@ -112,12 +112,13 @@ class moderatorController extends Controller
       //$post_report->save();
       DB::table('articles')
                ->where('article_id',$article_id)
-               ->delete();
+               ->update(['verification' => 'blocked']);
          
    }
-
-   return view('moderator.index');
-
+      $articles=DB::table('Articles')
+               ->get();
+      
+      return view('moderator.delete_post')-> with('articles',$articles);
  
    }  
 

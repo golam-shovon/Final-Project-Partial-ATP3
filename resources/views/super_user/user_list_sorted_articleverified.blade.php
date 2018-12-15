@@ -6,10 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="_token" content="{{ csrf_token() }}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>		
-	<title>User List</title>
+	<title>User List Sorted By Article Verified</title>
 </head>
 <body>
-		<h2>User List  </h2>
+		<h2>UUser List Sorted By Article Verified</h2>
 		<a href="{{route('super_user.index')}}">Back</a> 	
     <span>Search for Users : </span><input type="text" id="search" name="search" placeholder="type here to search"></input>
 
@@ -41,9 +41,9 @@
 				<td><a href="{{route('super_user.user_list_sorted_articlereported')}}">Sort By Article Reported</a></td>
 				<td>Number Of Articles Reports</td>
 				<td><a href="{{route('super_user.user_list_sorted_comments')}}">Sort By Number of commnets</a></td>
-				<td>Number Of Reported Comment</td>
-				<td>Number Of Comments Reported</td>
-				<td>Moderator Level</td>
+				<td></td>
+				<td></td>
+				<td></td>
 			</tr>			
 			<tr>
 				<td>ID</td>

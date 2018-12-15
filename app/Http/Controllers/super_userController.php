@@ -251,6 +251,79 @@ class super_userController extends Controller
             return Response($output);
          }                     
       }
+   }
+
+   public function user_list_sorted_articlewritten(Request $request){
+      session(['user_id' => 1]); 
+   $users=DB::table('user_performances')
+         ->join('users','users.user_id','=','user_performances.user_id') 
+         ->orderBy('article_written', 'desc')      
+         ->get();
+
+
+      return view('super_user.user_list_sorted_articlewritten')-> with('users',$users);
+   }  
+
+   public function user_list_sorted_articleverified(Request $request){
+      session(['user_id' => 1]); 
+   $users=DB::table('user_performances')
+         ->join('users','users.user_id','=','user_performances.user_id') 
+         ->orderBy('article_verified', 'desc')      
+         ->get();
+
+
+      return view('super_user.user_list_sorted_articleverified')-> with('users',$users);
    } 
+
+   public function user_list_sorted_articlereported(Request $request){
+      session(['user_id' => 1]); 
+   $users=DB::table('user_performances')
+         ->join('users','users.user_id','=','user_performances.user_id') 
+         ->orderBy('reported_article', 'desc')      
+         ->get();
+
+
+      return view('super_user.user_list_sorted_articlereported')-> with('users',$users);
+   }
+
+   public function user_list_sorted_comments(Request $request){
+      session(['user_id' => 1]); 
+   $users=DB::table('user_performances')
+         ->join('users','users.user_id','=','user_performances.user_id') 
+         ->orderBy('comment_number', 'desc')      
+         ->get();
+
+
+      return view('super_user.user_list_sorted_comments')-> with('users',$users);
+   }
+
+   public function delete_articles(Request $request){
+      session(['user_id' => 1]); 
+      $statusadmin[]=$request['statusyes'];
+
+      foreach($statusadmin as $article_id){
+      //$post_report=Post_report::find($report_id);
+      //$post_report->status='admin';
+      //$post_report->save();
+      DB::table('articles')
+               ->where('article_id',$article_id)
+               ->update(['verification' => 'blocked']);
+         
+   }
+      $articles=DB::table('Articles')
+               ->get();
+      return view('super_user.delete_post')-> with('articles',$articles);
+
+ 
+   }
+
+   public function delete_post(Request $request){
+      session(['user_id' => 1]); 
+
+      $articles=DB::table('Articles')
+               ->get();
+      
+      return view('super_user.delete_post')-> with('articles',$articles);
+   }                        
 }
 

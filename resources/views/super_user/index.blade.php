@@ -9,7 +9,7 @@
     <body>
     	<a href="{{route('super_user.reported_post')}}">Reported Post</a>
     	<a href="{{route('super_user.unverified_post')}}">Unverfied Post</a>
-    	<a href="{{route('moderator.delete_post')}}">Delete Post</a>
+    	<a href="{{route('super_user.delete_post')}}">Delete Post</a>
     	<a href="{{route('super_user.notice')}}">Notice</a>
         <a href="{{route('super_user.low_accuracy')}}">Low Acccuracy Posts</a>
         <a href="{{route('super_user.comment_report')}}">Comment Reports</a>

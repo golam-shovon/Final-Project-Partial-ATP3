@@ -45,9 +45,13 @@ Route::get('/moderator/notice/see', 'moderatorController@see_notice_render')->na
 Route::post('/moderator/notice/see', 'moderatorController@delete_notice');
 Route::get('/searchValueNotice','moderatorController@searchnotice');
 Route::get('/searchValueUser','super_userController@searchuser');
-
-
-
-
-
-
+Route::get('/super_user/user_list_sorted_articlewritten', 'super_userController@user_list_sorted_articlewritten')->name('super_user.user_list_sorted_articlewritten');
+Route::post('/super_user/user_list_sorted_articlewritten', 'super_userController@increase_level');
+Route::get('/super_user/user_list_sorted_articleverified', 'super_userController@user_list_sorted_articleverified')->name('super_user.user_list_sorted_articleverified');
+Route::post('/super_user/user_list_sorted_articleverified', 'super_userController@increase_level');
+Route::get('/super_user/user_list_sorted_articlereported', 'super_userController@user_list_sorted_articlereported')->name('super_user.user_list_sorted_articlereported');
+Route::post('/super_user/user_list_sorted_articlereported', 'super_userController@increase_level');
+Route::get('/super_user/user_list_sorted_comments', 'super_userController@user_list_sorted_comments')->name('super_user.user_list_sorted_comments');
+Route::post('/super_user/user_list_sorted_articlereported', 'super_userController@increase_level');
+Route::get('/super_user/delete_post', 'super_userController@delete_post')->name('super_user.delete_post');
+Route::post('/super_user/delete_post', 'super_userController@delete_articles');
